@@ -2,7 +2,7 @@
 # Follow Phantom
 Automate the process of following pages on LinkedIn with ease using Follow Phantom—a PyQt5 and Selenium-based desktop application.
 
-<img src="https://github.com/ItzDc02/Follow-Phantom/blob/master/app_icon.png" alt="Follow Phantom Logo" width="200"/>
+<img src="https://github.com/ItzDc02/Follow-Phantom/blob/master/Images/app_icon.png" alt="Follow Phantom Logo" width="200"/>
 
 ## 🚀 Features
 - **User-Friendly Interface:** Simple and clear GUI built with PyQt5.
