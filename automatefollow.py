@@ -14,11 +14,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import logging
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Setting up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-class LinkedInFollowApp(QWidget):
+class FollowPhantom(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -26,13 +27,13 @@ class LinkedInFollowApp(QWidget):
         self.two_fa_enabled = False
 
     def initUI(self):
-        self.setWindowTitle('LinkedIn Follow Bot')
+        self.setWindowTitle('Follow Phantom')
         self.setGeometry(100, 100, 400, 350)
         self.setStyleSheet("background-color: #2E2E2E; color: #FFFFFF; font-size: 14px;")
 
         layout = QVBoxLayout()
 
-        self.info_label = QLabel('Welcome to LinkedIn Follow Bot')
+        self.info_label = QLabel('Welcome to Follow Phantom')
         self.info_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(self.info_label)
 
@@ -101,15 +102,14 @@ class LinkedInFollowApp(QWidget):
 
     def run_bot(self, file_path, username, password, two_fa_enabled):
         EXCEL_PATH = file_path
-        CHROME_DRIVER_PATH = 'chromedriver-win64/chromedriver.exe'
         COLUMN_NAME = 'Career Page URL'
         df = pd.read_excel(EXCEL_PATH, header=None)
         df.columns = [COLUMN_NAME]
         df = self.check_for_duplicates(df)
 
-        service = Service(CHROME_DRIVER_PATH)
         try:
-            driver = webdriver.Chrome(service=service)
+            # Replacing the service setup with webdriver-manager
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         except Exception as e:
             logging.error(f"Error initializing WebDriver: {e}")
             QMessageBox.critical(self, 'Error', 'Failed to initialize WebDriver.', QMessageBox.Ok)
@@ -176,8 +176,8 @@ class LinkedInFollowApp(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon('icon.png'))
-    window = LinkedInFollowApp()
+    app.setWindowIcon(QIcon('app_icon.png'))
+    window = FollowPhantom()
     window.show()
     sys.exit(app.exec_())
 
