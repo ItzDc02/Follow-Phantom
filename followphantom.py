@@ -176,7 +176,7 @@ class FollowPhantom(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon('app_icon.png'))
+    app.setWindowIcon(QIcon('Images/app_icon.png'))
     window = FollowPhantom()
     window.show()
     sys.exit(app.exec_())
